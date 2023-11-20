@@ -51,8 +51,11 @@ def register():
                     return apology("must provide password", 400)
                 for user in users:
                     if username == user["username"]:
-                     return apology("This username is taken", 400)
-                db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, generate_password_hash(password))
+                        return apology("This username is taken", 400)
+                birthday = request.form.get("birthday")
+                if not birthday:
+                    return apology("No birthday entered", 400)
+                db.execute("INSERT INTO users (username, hash, birthday) VALUES (?, ?)", username, generate_password_hash(password), birthday)
                 return render_template("login.html")
 
 
