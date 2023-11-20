@@ -21,6 +21,20 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///social.db")
 
+def login_required(f):
+    """
+    Decorate routes to require login.
+
+    http://flask.pocoo.org/docs/0.12/patterns/viewdecorators/
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
@@ -32,80 +46,17 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
-    user_cash = db.execute("SELECT cash FROM users WHERE id = ?", session['user_id'])
-    user_data = db.execute("SELECT stock_num AS Shares, stock_name AS Name FROM users_balance WHERE user_id = ?", session['user_id'])
-    total_money = 0
-    for stock_data in user_data:
-        stock_data["stock_price"] = lookup(stock_data["Name"])["price"]
-        stock_data["total"] = stock_data["stock_price"] * int(stock_data["Shares"])
-        stock_data["stock_price"] = usd(stock_data["stock_price"])
-        total_money += stock_data["total"]
-        stock_data["total"] = usd(stock_data["total"])
-    total_money += user_cash[0]["cash"]
-    return render_template("basket.html", user_data=user_data, user_cash= usd(user_cash[0]["cash"]), total_money = usd(total_money))
+
 
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
-    """Buy shares of stock"""
-    if request.method == "GET":
-        return render_template("buy.html")
-
-    elif request.method == "POST":
-        symbol = lookup(request.form.get("symbol"))
-        if not symbol:
-            return apology("must provide stock name", 400)
-        else:
-            stock_name = symbol["symbol"]
-            stock_num = request.form.get("shares")
-            if not stock_num:
-                return apology("must provide stock share", 400)
-            else:
-                if checker(stock_num):
-                    stock_num = int(stock_num)
-                    user_data = db.execute("SELECT id, cash FROM users WHERE id = ?", session['user_id'])[0]
-                    if (user_data["cash"] >= symbol["price"] * stock_num):
-                        stock_data = db.execute("SELECT stock_num, stock_name FROM users_balance WHERE user_id = ? ", session['user_id'])
-                        db.execute("UPDATE users SET cash = ? WHERE id = ?", user_data["cash"] - symbol["price"] * stock_num, session['user_id'] )
-                        updated = False
-                        for stock in stock_data:
-                            if stock_name == stock["stock_name"]:
-                                db.execute("UPDATE users_balance SET stock_num = ? WHERE user_id = ? AND stock_name = ?", stock["stock_num"] + stock_num, session['user_id'], stock_name )
-                                updated = True
-
-                        if updated == False:
-                            db.execute("INSERT INTO users_balance (stock_num, stock_name, user_id) VALUES (?, ?, ?)", stock_num, stock_name, session['user_id'] )
-                        user_cash = db.execute("SELECT cash FROM users WHERE id = ?", session['user_id'])
-                        user_data = db.execute("SELECT stock_num AS Shares, stock_name AS Name FROM users_balance WHERE user_id = ?", session['user_id'])
-                        total_money = 0
-                        for stock_data in user_data:
-                            stock_data["stock_price"] = lookup(stock_data["Name"])["price"]
-                            stock_data["total"] = stock_data["stock_price"] * int(stock_data["Shares"])
-                            stock_data["stock_price"] = usd(stock_data["stock_price"])
-                            total_money += stock_data["total"]
-                            stock_data["total"] = usd(stock_data["total"])
-                        db.execute("INSERT INTO history (hstock_num, hstock_name, hstock_price, user_id) VALUES (?, ?, ?, ?)", stock_num, stock_name, symbol["price"], session['user_id'] )
-                        total_money += user_cash[0]["cash"]
-                        return render_template("basket.html", user_data=user_data, user_cash= usd(user_cash[0]["cash"]), total_money = usd(total_money))
-                    else:
-                        return apology("Not enough balance", 400)
-                else:
-                    return apology("fractional, negative, and non-numeric shares", 400)
-
-
-
 
 
 
 @app.route("/history")
 @login_required
-def history():
-    user_cash = db.execute("SELECT cash FROM users WHERE id = ?", session['user_id'])
-    user_data = db.execute("SELECT hstock_name, hstock_num, hstock_price, date FROM history WHERE user_id = ?", session['user_id'])
-    for stock_data in user_data:
-        stock_data["hstock_price"] = usd(stock_data["hstock_price"])
-    return render_template("history.html", user_data=user_data, user_cash= usd(user_cash[0]["cash"]))
 
 
 
@@ -159,16 +110,7 @@ def logout():
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
-    if request.method == "GET":
-        return render_template("quote.html")
-
-    elif request.method == "POST":
-        symbol = lookup(request.form.get("symbol"))
-        if not symbol:
-            return apology("Invalid Request", 400)
-        symbol["price"] = usd(symbol["price"])
-        return render_template("quoted.html", symbol = symbol)
-
+    
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
