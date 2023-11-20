@@ -26,3 +26,36 @@ form {
     border: none;
     border-radius: 5px;
  }
+ body {
+    font-family: Arial, sans-serif;
+ }
+
+ .navbar {
+    background-color: #f8f9fa;
+ }
+
+ .navbar-brand {
+    color: #6c757d;
+ }
+
+ .nav-link {
+    color: #6c757d;
+ }
+
+ .nav-link:hover {
+    color: #007bff;
+ }
+
+ .container-fluid {
+    padding: 20px;
+ }
+
+ footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    text-align: center;
+ }
