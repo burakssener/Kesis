@@ -113,14 +113,14 @@ def profile():
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
-def buy():
+def asd():
     return apology
 
 
 
 @app.route("/history")
 @login_required
-def buy():
+def asdd():
     return apology
 
 
@@ -128,7 +128,7 @@ def buy():
 
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
-def buy():
+def buasdy():
     return apology
 
 
