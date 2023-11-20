@@ -38,12 +38,14 @@ form {
     color: #6c757d;
     font-family: 'League Spartan', sans-serif;
     font-weight: 700;
+    margin-left: 30px;
  }
 
  .nav-link {
     color: #6c757d;
     font-family: 'League Spartan', sans-serif;
     font-weight: 700;
+    margin-left: 15px;
  }
 
  .nav-link:hover {
