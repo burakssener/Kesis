@@ -21,28 +21,31 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///social.db")
 
-@app.after_request
-def after_request(response):
-    """Ensure responses aren't cached"""
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    """Register user"""
+    if request.method == "GET":
+        return render_template("register.html")
 
-@app.route("/")
-@login_required
-def index():
+    elif request.method == "POST":
 
-
-
-@app.route("/buy", methods=["GET", "POST"])
-@login_required
-def buy():
-
-
-
-@app.route("/history")
-@login_required
+        if not request.form.get("username"):
+            return apology("must provide username", 400)
+        else:
+            username = request.form.get("username")
+            if not request.form.get("password") or not request.form.get("confirmation"):
+                return apology("must provide password", 400)
+            else:
+                password = request.form.get("password")
+                crpassword = request.form.get("confirmation")
+                users = db.execute("SELECT username FROM users WHERE username= ? ", username)
+                if  password != crpassword:
+                    return apology("must provide password", 400)
+                for user in users:
+                    if username == user["username"]:
+                     return apology("This username is taken", 400)
+                db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, generate_password_hash(password))
+                return render_template("login.html")
 
 
 
@@ -82,6 +85,35 @@ def login():
         return render_template("login.html")
 
 
+@app.after_request
+def after_request(response):
+    """Ensure responses aren't cached"""
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
+
+@app.route("/")
+@login_required
+def profile():
+    return apology
+
+
+
+@app.route("/buy", methods=["GET", "POST"])
+@login_required
+def buy():
+    return apology
+
+
+
+@app.route("/history")
+@login_required
+def
+
+
+
+
 @app.route("/logout")
 def logout():
     """Log user out"""
@@ -97,32 +129,6 @@ def logout():
 @login_required
 def quote():
 
-
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    """Register user"""
-    if request.method == "GET":
-        return render_template("register.html")
-
-    elif request.method == "POST":
-
-        if not request.form.get("username"):
-            return apology("must provide username", 400)
-        else:
-            username = request.form.get("username")
-            if not request.form.get("password") or not request.form.get("confirmation"):
-                return apology("must provide password", 400)
-            else:
-                password = request.form.get("password")
-                crpassword = request.form.get("confirmation")
-                users = db.execute("SELECT username FROM users WHERE username= ? ", username)
-                if  password != crpassword:
-                    return apology("must provide password", 400)
-                for user in users:
-                    if username == user["username"]:
-                     return apology("This username is taken", 400)
-                db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, generate_password_hash(password))
-                return render_template("login.html")
 
 
 
