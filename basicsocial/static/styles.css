@@ -36,10 +36,14 @@ form {
 
  .navbar-brand {
     color: #6c757d;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
  }
 
  .nav-link {
     color: #6c757d;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
  }
 
  .nav-link:hover {
@@ -59,4 +63,3 @@ form {
     color: #6c757d;
     text-align: center;
  }
- 
