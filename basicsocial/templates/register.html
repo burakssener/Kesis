@@ -1,15 +1,29 @@
-<form action="/register" method="post">
-   <div class="form-group">
-       <label for="r_username">Username</label>
-       <input type="text" class="form-control" id="r_username" name="username" placeholder="Enter username">
-   </div>
-   <div class="form-group">
-       <label for="r_password">Password</label>
-       <input type="password" class="form-control" id="r_password" name="password" placeholder="Enter password">
-   </div>
-   <div class="form-group">
-       <label for="cr_password">Confirm Password</label>
-       <input type="password" class="form-control" id="cr_password" name="confirmation" placeholder="Confirm password">
-   </div>
-   <button type="submit" class="btn btn-primary">Register</button>
-</form>
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <label for="r_username">Username</label>
+            <input type="text" class="form-control" id="r_username" name="username" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+            <label for="r_password">Password</label>
+            <input type="password" class="form-control" id="r_password" name="password" placeholder="Enter password">
+        </div>
+        <div class="form-group">
+            <label for="cr_password">Confirm Password</label>
+            <input type="password" class="form-control" id="cr_password" name="confirmation" placeholder="Confirm password">
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+        <div class="form-group">
+            <label for="birthday">Birthday</label>
+            <input type="date" class="form-control" id="birthday" name="birthday">
+         </div>
+    </form>
+
+
+{% endblock %}
