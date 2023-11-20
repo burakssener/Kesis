@@ -31,23 +31,32 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link fs-4" href="/">Home</a>
-                    </li>
-                    <li class="nav-item fs-4">
-                        <a class="nav-link" href="/profile">Profile</a>
-                    </li>
-                    <li class="nav-item fs-4">
-                        <a class="nav-link" href="/Search">Search</a>
-                    </li>
-                    <li class="nav-item fs-4">
-                        <a class="nav-link" href="/logout">Logout</a>
-                    </li>
-                </ul>
+                {% if session["user_id"] %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link fs-4" href="/">Home</a>
+                        </li>
+                        <li class="nav-item fs-4">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                        <li class="nav-item fs-4">
+                            <a class="nav-link" href="/Search">Search</a>
+                        </li>
+                        <li class="nav-item fs-4">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link fs-4" href="/">Register</a>
+                        </li>
+                        <li class="nav-item fs-4">
+                            <a class="nav-link" href="/profile">Login</a>
+                        </li>
+                    </ul>
             </div>
          </nav>
-
         {% if get_flashed_messages() %}
             <header>
                 <div class="alert alert-primary mb-0 text-center" role="alert">
