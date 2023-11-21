@@ -126,8 +126,8 @@ def group():
         if not request.form.get("group_name"):
             return apology("must provide group_name", 400)
         else:
-            username = request.form.get("group_name")
-            if not request.form.get("group_pass") or not request.form.get("confirmation"):
+            group_name = request.form.get("group_name")
+            if not request.form.get("password") or not request.form.get("confirmation"):
                 return apology("must provide password", 400)
             else:
                 password = request.form.get("password")
