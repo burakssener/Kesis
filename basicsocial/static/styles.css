@@ -54,8 +54,10 @@ form {
 
  .container-fluid {
     padding: 20px;
+    width: 50%;
     display: flex;
     justify-content: center;
+
  }
 
  footer {
