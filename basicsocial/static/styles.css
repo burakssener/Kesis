@@ -73,11 +73,8 @@ form {
 
  .post {
    max-width: 500px;
-   padding: 20px;
    border: 1px solid #ccc;
    margin-bottom: 20px;
-   justify-content: center;
-   align-items: center;
   }
 
   .username {
