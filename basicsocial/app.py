@@ -117,7 +117,7 @@ def feed():
 @app.route("/groups", methods=["GET", "POST"])
 @login_required
 def group():
-    displayment = db.execute("SELECT * FROM GROUPS")
+    displayment = db.execute("SELECT group_id, group_name FROM GROUPS")
     if request.method == "GET":
         return render_template("groups.html", displayment=displayment)
 
@@ -138,7 +138,8 @@ def group():
                 for group in groups:
                     if group_name == group["group_name"]:
                         return apology("This group_name is taken", 400)
-                db.execute("INSERT INTO groups (group_name, user_id) VALUES (?, ?)", group_name, generate_password_hash(password))
+                db.execute("INSERT INTO groups (group_name, group_pass) VALUES (?, ?)", group_name, generate_password_hash(password))
+                displayment = db.execute("SELECT group_id, group_name FROM GROUPS")
                 return render_template("groups.html", displayment=displayment)
 
 
