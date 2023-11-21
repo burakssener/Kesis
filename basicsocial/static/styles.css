@@ -59,6 +59,11 @@ form {
     justify-content: center;
 
  }
+ .container
+ {
+   margin-top: 50px;
+ }
+
 
  footer {
     position: fixed;
