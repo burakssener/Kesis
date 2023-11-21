@@ -114,10 +114,10 @@ def feed():
 
 
 
-@app.route("/buy", methods=["GET", "POST"])
+@app.route("/groups", methods=["GET", "POST"])
 @login_required
-def asd():
-    return apology
+def group():
+    return render_template("groups.html")
 
 
 
