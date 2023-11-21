@@ -13,3 +13,22 @@
 
 
 {% endblock %}
+
+CREATE TABLE users (
+id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+username TEXT NOT NULL,
+hash TEXT NOT NULL,
+birthday DATE NOT NULL);
+
+CREATE TABLE groups (
+group_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+group_name TEXT NOT NULL,
+group_pass TEXT NOT NULL);
+
+CREATE TABLE posts (
+post_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+group_name TEXT NOT NULL,
+user_id INTEGER NOT NULL,
+group_id INTEGER NOT NULL,
+FOREIGN KEY (user_id) REFERENCES users(id),
+FOREIGN KEY (group_id) REFERENCES groups(group_id));
