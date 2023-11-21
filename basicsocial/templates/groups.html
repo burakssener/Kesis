@@ -36,6 +36,24 @@
 
     </table>
 
+    <table class="table table-striped">
+        <tr>
+            <th>Group Id</th>
+            <th>Group Name</th>
+        </tr>
+        {%for group in displayment%}
+            <tr>
+                {%for data in group.values()%}
+                    <td>
+                        {{data}}
+                    </td>
+                {%endfor%}
+            </tr>
+        {%endfor%}
+
+
+    </table>
+
 
 
 {% endblock %}
