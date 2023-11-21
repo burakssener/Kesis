@@ -22,11 +22,13 @@ group_id INT
 
 CREATE TABLE groups (
 group_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-user_id TEXT NOT NULL,
+group_name TEXT NOT NULL,
 group_name TEXT NOT NULL )
 
-CREATE TABLE groups (
-user_id TEXT NOT NULL,
-group_name TEXT NOT NULL,
-group_id,
- )
+CREATE TABLE history (
+hstock_num int NOT NULL,
+hstock_name VARCHAR(100) NOT NULL,
+hstock_price int NOT NULL,
+user_id int NOT NULL,
+date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(id));
