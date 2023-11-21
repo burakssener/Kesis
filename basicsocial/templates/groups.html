@@ -48,7 +48,7 @@
                     </tr>
                     {%for group in users_groups%}
                         <tr>
-                            {%for data in users_groups.values()%}
+                            {%for data in group.values()%}
                                 <td>
                                     {{data}}
                                 </td>
