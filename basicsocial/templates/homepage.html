@@ -21,7 +21,12 @@ group_name TEXT NOT NULL,
 group_id INT
 
 CREATE TABLE groups (
-post_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+group_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+user_id TEXT NOT NULL,
+group_name TEXT NOT NULL )
+
+CREATE TABLE groups (
 user_id TEXT NOT NULL,
 group_name TEXT NOT NULL,
-group_id INT
+group_id,
+ )
