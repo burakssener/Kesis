@@ -23,6 +23,16 @@
             <th>Name</th>
 
         </tr>
+        {%for group in displayment%}
+            <tr>
+                {%for data in group.values%}
+                    <td>
+                        data
+                    </td>
+                {%endfor%}
+            </tr>
+        {%endfor%}
+
 
     </table>
 
