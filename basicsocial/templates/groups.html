@@ -20,14 +20,14 @@
 
     <table class="table table-striped">
         <tr>
-            <th>Name</th>
-
+            <th>Group Id</th>
+            <th>Group Name</th>
         </tr>
         {%for group in displayment%}
             <tr>
-                {%for data in group.values%}
+                {%for data in group.values()%}
                     <td>
-                        data
+                        {{data}}
                     </td>
                 {%endfor%}
             </tr>
