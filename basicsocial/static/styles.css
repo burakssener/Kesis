@@ -54,6 +54,8 @@ form {
 
  .container-fluid {
     padding: 20px;
+    display: flex;
+    justify-content: center;
  }
 
  footer {
@@ -72,8 +74,7 @@ form {
  }
 
  .post {
-   display: flex;
-   a
+
    max-width: 1200px;
    border: 1px solid #ccc;
   }
