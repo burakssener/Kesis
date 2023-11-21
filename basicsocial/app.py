@@ -109,8 +109,8 @@ def logout():
 
 @app.route("/")
 @login_required
-def profile():
-    return apology
+def feed():
+    return render_template("homepage.html")
 
 
 
