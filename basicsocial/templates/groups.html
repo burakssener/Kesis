@@ -22,12 +22,13 @@
                 </form>
             </div>
             <div class = "col-4">
+                <h1 class="display-4"> All Groups</h1>
                 <table class="table table-striped">
                     <tr>
                         <th >Group Id</th>
                         <th>Group Name</th>
                     </tr>
-                    {%for group in displayment%}
+                    {%for group in all_groups%}
                         <tr >
                             {%for data in group.values()%}
                                 <td>
@@ -39,14 +40,15 @@
                 </table>
             </div>
             <div class = "col-4">
+                <h1 class="display-4"> Your Groups</h1>
                 <table class="table table-striped">
                     <tr>
                         <th>Group Id</th>
                         <th>Group Name</th>
                     </tr>
-                    {%for group in displayment%}
+                    {%for group in users_groups%}
                         <tr>
-                            {%for data in group.values()%}
+                            {%for data in users_groups.values()%}
                                 <td>
                                     {{data}}
                                 </td>
