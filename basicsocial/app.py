@@ -122,25 +122,22 @@ def group():
 
     elif request.method == "POST":
 
-        if not request.form.get("username"):
-            return apology("must provide username", 400)
+        if not request.form.get("group_name"):
+            return apology("must provide group_name", 400)
         else:
-            username = request.form.get("username")
-            if not request.form.get("password") or not request.form.get("confirmation"):
+            username = request.form.get("group_name")
+            if not request.form.get("group_pass") or not request.form.get("confirmation"):
                 return apology("must provide password", 400)
             else:
                 password = request.form.get("password")
                 crpassword = request.form.get("confirmation")
-                users = db.execute("SELECT username FROM users WHERE username= ? ", username)
+                groups = db.execute("SELECT group_name FROM groups WHERE group_name= ? ", group_name)
                 if  password != crpassword:
                     return apology("must provide password", 400)
-                for user in users:
-                    if username == user["username"]:
-                        return apology("This username is taken", 400)
-                birthday = request.form.get("birthday")
-                if not birthday:
-                    return apology("No birthday entered", 400)
-                db.execute("INSERT INTO users (username, hash, birthday) VALUES (?, ?, ?)", username, generate_password_hash(password), birthday)
+                for group in groups:
+                    if group_name == group["group_name"]:
+                        return apology("This group_name is taken", 400)
+                db.execute("INSERT INTO groups (username, hash, birthday) VALUES (?, ?, ?)", username, generate_password_hash(password), birthday)
                 return render_template("login.html")
 
 
