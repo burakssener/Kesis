@@ -121,13 +121,6 @@ def asd():
 
 
 
-@app.route("/history")
-@login_required
-def asdd():
-    return apology
-
-
-
 
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
