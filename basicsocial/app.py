@@ -139,7 +139,8 @@ def group():
                     if group_name == group["group_name"]:
                         return apology("This group_name is taken", 400)
                 db.execute("INSERT INTO groups (group_name, group_pass) VALUES (?, ?)", group_name, generate_password_hash(password))
-                db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", )
+                group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name)[0]
+                db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id["group_id"] )
                 displayment = db.execute("SELECT group_id, group_name FROM GROUPS")
                 return render_template("groups.html", displayment=displayment)
 
