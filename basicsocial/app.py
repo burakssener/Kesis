@@ -55,7 +55,7 @@ def register():
                 birthday = request.form.get("birthday")
                 if not birthday:
                     return apology("No birthday entered", 400)
-                db.execute("INSERT INTO users (username, hash, birthday) VALUES (?, ?)", username, generate_password_hash(password), birthday)
+                db.execute("INSERT INTO users (username, hash, birthday) VALUES (?, ?, ?)", username, generate_password_hash(password), birthday)
                 return render_template("login.html")
 
 
