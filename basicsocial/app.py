@@ -117,8 +117,31 @@ def feed():
 @app.route("/groups", methods=["GET", "POST"])
 @login_required
 def group():
-    return render_template("groups.html")
+    if request.method == "GET":
+        return render_template("groups.html")
 
+    elif request.method == "POST":
+
+        if not request.form.get("username"):
+            return apology("must provide username", 400)
+        else:
+            username = request.form.get("username")
+            if not request.form.get("password") or not request.form.get("confirmation"):
+                return apology("must provide password", 400)
+            else:
+                password = request.form.get("password")
+                crpassword = request.form.get("confirmation")
+                users = db.execute("SELECT username FROM users WHERE username= ? ", username)
+                if  password != crpassword:
+                    return apology("must provide password", 400)
+                for user in users:
+                    if username == user["username"]:
+                        return apology("This username is taken", 400)
+                birthday = request.form.get("birthday")
+                if not birthday:
+                    return apology("No birthday entered", 400)
+                db.execute("INSERT INTO users (username, hash, birthday) VALUES (?, ?, ?)", username, generate_password_hash(password), birthday)
+                return render_template("login.html")
 
 
 
