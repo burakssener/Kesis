@@ -144,7 +144,7 @@ def group():
                 db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id["group_id"] )
                 users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
                 discover_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id NOT IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
-                return render_template("groups.html", all_groups=all_groups, discover_groups=discover_groups)
+                return render_template("groups.html", users_groups=users_groups, discover_groups=discover_groups)
 
 
 

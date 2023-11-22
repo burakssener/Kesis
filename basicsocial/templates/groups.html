@@ -22,11 +22,12 @@
                 </form>
             </div>
             <div class = "col-4">
-                <h1 class="display-6"> Discover </h1>
+                <h1 class="laid"> Discover </h1>
                 <table class="table table-striped">
                     <tr>
                         <th >Group Id</th>
                         <th>Group Name</th>
+                        <th>Accessing</th>
                     </tr>
                     {%for group in discover_groups%}
                         <tr >
@@ -36,7 +37,7 @@
                                 </td>
                             {%endfor%}
                                 <td>
-                                    <button type="button" class="btn btn-success">Success</button>
+                                    <button type="button" class="btn btn-success">Join!</button>
                                 </td>
                         </tr>
                     {%endfor%}
@@ -48,6 +49,7 @@
                     <tr>
                         <th>Group Id</th>
                         <th>Group Name</th>
+                        <th>Viewing</th>
                     </tr>
                     {%for group in users_groups%}
                         <tr>
@@ -56,6 +58,9 @@
                                     {{data}}
                                 </td>
                             {%endfor%}
+                            <td>
+                                <button type="button" class="btn btn-success">View!</button>
+                            </td>
                         </tr>
                     {%endfor%}
                 </table>
