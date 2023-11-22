@@ -19,15 +19,11 @@ form {
  }
 
  .btn {
-    width: 100%;
+   
     padding: 10px;
-    background-color: #007BFF;
     color: #fff;
     border: none;
     border-radius: 5px;
- }
- body {
-    font-family: Arial, sans-serif;
  }
 
  .navbar {
