@@ -42,7 +42,7 @@
                                 </td>
                             {%endfor%}
                                 <td>
-                                    <button type="button" name = "button" value = "{{group.values[id]}}"class="btn btn-success">Join!</button>
+                                    <button type="button" name = "button" value = "{{group.values['group_id']}}"class="btn btn-success">Join!</button>
                                 </td>
                         </tr>
                     {%endfor%}
@@ -64,7 +64,7 @@
                                 </td>
                             {%endfor%}
                             <td>
-                                <button type="button" class="btn btn-success">View!</button>
+                                <button type="button" name = "button" value = "{{group.values['group_id']}}" class="btn btn-success">Join!</button>
                             </td>
                         </tr>
                     {%endfor%}
