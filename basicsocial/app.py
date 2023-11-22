@@ -156,7 +156,8 @@ def group():
 @login_required
 def profile():
     if request.method == "GET":
-        return render_template("profile.html")
+        users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+        return render_template("profile.html", users_groups=users_groups)
 
 
 
