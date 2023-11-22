@@ -12,10 +12,11 @@
                     <div class="mb-3">
                         <textarea class="form-control" name="text" rows="3" placeholder ="What's happening?"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">KESIS</button>
                     <div class="mb-3">
-                        <label> Choose the group that you want to share:</label>
-                        <select class="form-select form-select-lg mb-3">
+                        <button type="submit" class="btn btn-primary">KESIS</button>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select form-select-sm mb-3"aria-label="Choose the group that you want to share:">
                             {%for group in users_groups%}
                                     <option>
                                         {{group["group_name"]}}
