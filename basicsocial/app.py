@@ -152,11 +152,11 @@ def group():
 
 
 
-@app.route("/asd", methods=["GET", "POST"])
+@app.route("/profile", methods=["GET", "POST"])
 @login_required
-def asd():
-    """if request.method = "GET":
-        request.form.get("joi")"""
+def profile():
+    if request.method == "GET":
+        return render_template("profile.html")
 
 
 
