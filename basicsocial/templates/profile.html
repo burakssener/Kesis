@@ -1,33 +1,39 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Log In
+    Profile
 {% endblock %}
 
 {% block main %}
-
-</div>
-<div class = "col-4">
-    <h1 class="display-6"> Your Groups</h1>
-    <table class="table table-striped">
-        <tr>
-            <th>Group Id</th>
-            <th>Group Name</th>
-            <th>Viewing</th>
-        </tr>
-        {%for group in users_groups%}
-            <tr>
-                {%for data in group.values()%}
-                    <td>
-                        {{data}}
-                    </td>
+<div class="container">
+    <div class="row">
+        <div class = "col-4">
+            <p class="display-5"> Your Profile</p>
+        </div>
+        <div class = "col-8">
+            <h1 class="display-6"> Your Groups</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>Group Id</th>
+                    <th>Group Name</th>
+                    <th>Viewing</th>
+                </tr>
+                {%for group in users_groups%}
+                    <tr>
+                        {%for data in group.values()%}
+                            <td>
+                                {{data}}
+                            </td>
+                        {%endfor%}
+                        <td>
+                            <button type="button" name = "view" value = "{{group.values['group_id']}}" class="btn btn-success">View!</button>
+                        </td>
+                    </tr>
                 {%endfor%}
-                <td>
-                    <button type="button" name = "view" value = "{{group.values['group_id']}}" class="btn btn-success">View!</button>
-                </td>
-            </tr>
-        {%endfor%}
-    </table>
+            </table>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}
