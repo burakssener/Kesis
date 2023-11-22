@@ -117,7 +117,10 @@ def feed():
     if request.method == "GET":
         return render_template("feed.html")
     if request.method == "POST":
-        return render_template("feed.html")
+        user_input = request.form.get("text")
+        if not user_input:
+            return render_template("feed.html")
+        db.execute("INSERT INTO posts ")
 
 
 
