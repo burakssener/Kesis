@@ -13,14 +13,13 @@
                         <textarea class="form-control" name="text" rows="3" placeholder ="What's happening?"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">KESIS</button>
-                    <div>
-                        <select>
+                    <div class="mb-3">
+                        <label> Choose the group that you want to share:</label>
+                        <select class="form-select form-select-lg mb-3">
                             {%for group in users_groups%}
-                                    {%for name in group["group_name"]%}
-                                        <option>
-                                            {{name}}
-                                        </option>
-                                    {%endfor%}
+                                    <option>
+                                        {{group["group_name"]}}
+                                    </option>
                             {%endfor%}
                         </select>
                     </div>
