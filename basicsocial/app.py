@@ -106,11 +106,15 @@ def logout():
     return redirect("/")
 
 
-
 @app.route("/")
 @login_required
-def feed():
+def homepage():
     return render_template("homepage.html")
+
+@app.route("/feed")
+@login_required
+def feed():
+    return render_template("feed.html")
 
 
 

@@ -5,32 +5,13 @@
 {% endblock %}
 
 {% block main %}
-    <div  class = "post" class="w-25 p-3 justify-content-center" style="background-color: #cce8fc; >
-        <h2 class="username">Username</h2>
-        <p class="content">This is the post content.</p>
-        <p class="time">11/21/2023</p>
-    </div>
-
-
+    <form action="/login" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+        </div>
+        <button type="submit" class="btn btn-primary" type="submit">Log In</button>
+    </form>
 {% endblock %}
-
-CREATE TABLE users (
-id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-username TEXT NOT NULL,
-hash TEXT NOT NULL,
-birthday DATE NOT NULL);
-
-CREATE TABLE groups (
-group_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-group_name TEXT NOT NULL,
-group_pass TEXT NOT NULL);
-
-CREATE TABLE posts (
-post_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-group_name TEXT NOT NULL,
-user_id INTEGER NOT NULL,
-group_id INTEGER NOT NULL,
-FOREIGN KEY (user_id) REFERENCES users(id),
-FOREIGN KEY (group_id) REFERENCES groups(group_id));
-
-c
