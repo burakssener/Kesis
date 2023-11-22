@@ -115,12 +115,13 @@ def homepage():
 @login_required
 def feed():
     if request.method == "GET":
-        return render_template("feed.html")
+        users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+        return render_template("feed.html", users_groups=users_groups)
     if request.method == "POST":
         user_input = request.form.get("text")
-        if not user_input:
-            return render_template("feed.html")
-        db.execute("INSERT INTO posts ")
+        """if not user_input:"""
+        return render_template("feed.html")
+        """db.execute("INSERT INTO posts ")"""
 
 
 
