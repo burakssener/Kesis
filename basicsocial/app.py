@@ -117,9 +117,10 @@ def feed():
 @app.route("/groups", methods=["GET", "POST"])
 @login_required
 def group():
-    all_groups = db.execute("SELECT group_id, group_name FROM GROUPS")
     if request.method == "GET":
-        return render_template("groups.html", all_groups=all_groups)
+        users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+        discover_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id NOT IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+        return render_template("groups.html", users_groups=users_groups, discover_groups=discover_groups)
 
     elif request.method == "POST":
 
@@ -141,9 +142,9 @@ def group():
                 db.execute("INSERT INTO groups (group_name, group_pass) VALUES (?, ?)", group_name, generate_password_hash(password))
                 group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name)[0]
                 db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id["group_id"] )
-                all_groups = db.execute("SELECT group_id, group_name FROM groups")
                 users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
-                return render_template("groups.html", all_groups=all_groups, users_groups=users_groups)
+                discover_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id NOT IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+                return render_template("groups.html", all_groups=all_groups, discover_groups=discover_groups)
 
 
 
