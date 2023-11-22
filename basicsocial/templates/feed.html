@@ -9,13 +9,10 @@
         <div class="row mb-3">
             <div>
                 <form class="col-8">
-                    <div class="mb-3">
+                    <div class="col-6 mb-3">
                         <textarea class="form-control" name="text" rows="3" placeholder ="What's happening?"></textarea>
                     </div>
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">KESIS</button>
-                    </div>
-                    <div class="mb-3">
+                    <div class=" col-2 mb-3">
                         <label class = "mb-3 lead text-center">Choose the group that you want to share:</label>
                         <select class="form-select form-select-sm mb-3">
                             <option selected>Choose!</option>
@@ -25,6 +22,9 @@
                                     </option>
                             {%endfor%}
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">KESIS</button>
                     </div>
                 </form>
             </div>
