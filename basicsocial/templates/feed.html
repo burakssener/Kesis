@@ -13,6 +13,23 @@
                         <textarea class="form-control" name="text" rows="3" placeholder ="What's happening?"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">KESIS</button>
+                    <div>
+                        <select>
+                            {%for group in users_groups%}
+                                <tr>
+                                    {%for data in group.values()%}
+                                        <td>
+                                            {{data}}
+                                        </td>
+                                    {%endfor%}
+                                    <td>
+                                        <button type="button" name = "view" value = "{{group.values['group_id']}}" class="btn btn-success">View!</button>
+                                    </td>
+                                </tr>
+                            {%endfor%}
+                            <option></option>
+                        </select>
+                    </div>
                 </form>
             </div>
         </div>
