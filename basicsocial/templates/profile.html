@@ -7,20 +7,17 @@
 {% block main %}
 <div class="container">
     <div class="row">
-        <div class = "col-4">
+        <div class="col-4 p-3 bg-light bg-opacity-10 border border-info rounded-3">
             <p class="display-5"> Your Profile</p>
             <div class="row">
-
                 <div class="col-8">
                   <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
-                    <h4 id="list-item-1">Item 1</h4>
-                    <p>...</p>
-                    <h4 id="list-item-2">Item 2</h4>
-                    <p>...</p>
-                    <h4 id="list-item-3">Item 3</h4>
-                    <p>...</p>
-                    <h4 id="list-item-4">Item 4</h4>
-                    <p>...</p>
+                    {% for dict in users_information%}
+                        {% for key in dict.keys()%}
+                            <h4 id="list-item-1"> {{key}}</h4>
+                            <p> {{dict[key]}}</p>
+                        {% endfor %}
+                    {% endfor %}
                   </div>
                 </div>
               </div>

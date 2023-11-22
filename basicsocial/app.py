@@ -114,7 +114,13 @@ def homepage():
 @app.route("/feed")
 @login_required
 def feed():
-    return render_template("feed.html")
+    if request.method == "GET":
+        return render_template("feed.html")
+    if request.method == "POST":
+        return render_template("feed.html")
+
+
+
 
 
 
@@ -156,8 +162,12 @@ def group():
 @login_required
 def profile():
     if request.method == "GET":
+        users_information = db.execute("SELECT id as 'Your ID: ', username as 'Your KESIS name: ', birthday AS 'Special Day:' FROM users WHERE id = ? ", session["user_id"])
         users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
-        return render_template("profile.html", users_groups=users_groups)
+        return render_template("profile.html", users_groups=users_groups, users_information=users_information)
+    if request.method == "POST":
+        request.form.get("view")
+        return render_template("group_detail.html", )
 
 
 
