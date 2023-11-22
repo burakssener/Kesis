@@ -119,6 +119,7 @@ def feed():
         return render_template("feed.html", users_groups=users_groups)
     if request.method == "POST":
         user_input = request.form.get("text")
+        user_group = request.form.get("group_name")
         """if not user_input:"""
         return render_template("feed.html")
         """db.execute("INSERT INTO posts ")"""
