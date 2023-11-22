@@ -152,10 +152,11 @@ def group():
 
 
 
-@app.route("/quote", methods=["GET", "POST"])
+@app.route("/asd", methods=["GET", "POST"])
 @login_required
-def buasdy():
-    return apology
+def asd():
+    """if request.method = "GET":
+        request.form.get("joi")"""
 
 
 
