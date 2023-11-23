@@ -42,8 +42,10 @@
                                 </td>
                             {%endfor%}
                                 <td>
-                                    <input type="hidden" name="group_id" value="{{group.values['group_id']}}">
-                                    <button type="submit" name="join_group"class="btn btn-success">Join!</button>
+                                    <form action="/groups" method="post">
+                                        <input type="hidden" name="group_id" value="{{group.values['group_id']}}">
+                                        <button type="submit" name="join_group"class="btn btn-success">Join!</button>
+                                    </form>
                                 </td>
                         </tr>
                     {%endfor%}
