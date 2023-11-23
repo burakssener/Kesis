@@ -122,7 +122,7 @@ def feed():
         group_id =int(request.form.get("group_id"))
         if not user_input or not group_id:
             return apology("user input?")
-        db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", group_id, session["user_id"], user_input)
+        db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id, user_input)
         return redirect("/feed")
 
 
