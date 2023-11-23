@@ -139,33 +139,32 @@ def group():
 
     elif request.method == "POST":
         if 'join_group' in request.form:
-          # handle join group action
-          pass
-      elif 'create_group' in request.form:
-          # handle create group action
-          pass
+            return apology
 
-        if not request.form.get("group_name"):
-            return apology("must provide group_name", 400)
-        else:
-            group_name = request.form.get("group_name")
-            if not request.form.get("password") or not request.form.get("confirmation"):
-                return apology("must provide password", 400)
+        elif 'create_group' in request.form:
+            if not request.form.get("group_name"):
+                return apology("must provide group_name", 400)
             else:
-                password = request.form.get("password")
-                crpassword = request.form.get("confirmation")
-                groups = db.execute("SELECT group_name FROM groups WHERE group_name= ? ", group_name)
-                if  password != crpassword:
+                group_name = request.form.get("group_name")
+                if not request.form.get("password") or not request.form.get("confirmation"):
                     return apology("must provide password", 400)
-                for group in groups:
-                    if group_name == group["group_name"]:
-                        return apology("This group_name is taken", 400)
-                db.execute("INSERT INTO groups (group_name, group_pass) VALUES (?, ?)", group_name, generate_password_hash(password))
-                group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name)[0]
-                db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id["group_id"] )
-                users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
-                discover_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id NOT IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
-                return render_template("groups.html", users_groups=users_groups, discover_groups=discover_groups)
+                else:
+                    password = request.form.get("password")
+                    crpassword = request.form.get("confirmation")
+                    groups = db.execute("SELECT group_name FROM groups WHERE group_name= ? ", group_name)
+                    if  password != crpassword:
+                        return apology("must provide password", 400)
+                    for group in groups:
+                        if group_name == group["group_name"]:
+                            return apology("This group_name is taken", 400)
+                    db.execute("INSERT INTO groups (group_name, group_pass) VALUES (?, ?)", group_name, generate_password_hash(password))
+                    group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name)[0]
+                    db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id["group_id"] )
+                    users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+                    discover_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id NOT IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+                    return render_template("groups.html", users_groups=users_groups, discover_groups=discover_groups)
+
+
 
 
 
