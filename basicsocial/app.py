@@ -116,7 +116,8 @@ def homepage():
 def feed():
     if request.method == "GET":
         users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
-        return render_template("feed.html", users_groups=users_groups)
+        users_posts = db.execute("SELECT user_id, group_id, content, date FROM posts WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+        return render_template("feed.html", users_groups=users_groups, users_posts=users_posts)
     if request.method == "POST":
         user_input = str(request.form.get("text"))
         group_id =int(request.form.get("group_id"))

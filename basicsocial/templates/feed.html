@@ -31,18 +31,22 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-          <div class="col-md-6 offset-md-3">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">username</h5>
-                <p class="card-text">This is a tweet.</p>
-                <p class="card-text"><small class="text-muted">3 mins ago</small></p>
-              </div>
+
+    {% for posts in users_posts %}
+        <div class="container">
+            <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{post["username"]}}</h5>
+                    <p class="card-text"></p>
+                    <p class="card-text"><small class="text-muted">3 mins ago</small></p>
+                </div>
+                </div>
             </div>
-          </div>
+            </div>
         </div>
+    {% endfor %}
     </div>
 
 
