@@ -119,10 +119,11 @@ def feed():
         return render_template("feed.html", users_groups=users_groups)
     if request.method == "POST":
         user_input = request.form.get("text")
-        group_id = request.form.get("group_name")
-        if not user_input or not user_group:
+        group_id = request.form.get("group_id")
+        if not user_input or not group_id:
             return apology("user input?")
-        db.execute("INSERT INTO posts (user_id, group_id) VALUES (?, ?)", group_id, session["user_id"] )
+        db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", group_id, session["user_id"], user_input)
+        redirect("/feed")
 
 
 
