@@ -116,7 +116,7 @@ def homepage():
 def feed():
     if request.method == "GET":
         users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
-        users_posts = db.execute("SELECT USERS.username, POSTS.group_id, POSTS.content, POSTS.date FROM posts JOIN users ON USERS.id = POSTS.user_id WHERE POSTS.group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+        users_posts = db.execute("SELECT USERS.username, GROUPS.group_name, POSTS.content, POSTS.date FROM posts JOIN users ON USERS.id = POSTS.user_id JOIN groups ON GROUPS.group_id = POSTS.group_id WHERE POSTS.group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
         return render_template("feed.html", users_groups=users_groups, users_posts=users_posts)
     if request.method == "POST":
         user_input = str(request.form.get("text"))
