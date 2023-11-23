@@ -139,8 +139,9 @@ def group():
 
     elif request.method == "POST":
         if 'join_group' in request.form:
-            group_id = request.form.get("group_id")
+            group_id = int(request.form.get("group_id"))
             db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id)
+            redirect("/groups")
 
         elif 'create_group' in request.form:
             if not request.form.get("group_name"):
