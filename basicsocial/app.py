@@ -138,6 +138,12 @@ def group():
         return render_template("groups.html", users_groups=users_groups, discover_groups=discover_groups)
 
     elif request.method == "POST":
+        if 'join_group' in request.form:
+          # handle join group action
+          pass
+      elif 'create_group' in request.form:
+          # handle create group action
+          pass
 
         if not request.form.get("group_name"):
             return apology("must provide group_name", 400)
