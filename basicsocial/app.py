@@ -111,7 +111,7 @@ def logout():
 def homepage():
     return render_template("homepage.html")
 
-@app.route("/feed")
+@app.route("/feed", methods=["GET", "POST"])
 @login_required
 def feed():
     if request.method == "GET":
