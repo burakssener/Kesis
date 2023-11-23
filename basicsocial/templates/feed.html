@@ -13,7 +13,7 @@
                         <div >
                             <textarea class="form- control" name="text" rows="3" placeholder ="What's happening?"></textarea>
                         </div>
-                        <div >
+                        <div class="col-3">
                             <label class = "lead text-center fs-5 mb-3">Choose Group!</label>
                             <select class="form-select form-select-sm mb-3" name="group_id">
                                 {%for group in users_groups%}
@@ -24,7 +24,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="mb-3" class="col-8">
+                    <div class="mb-3" class="row">
                         <button type="submit" class="btn btn-primary">Kesis!</button>
                     </div>
                 </form>
