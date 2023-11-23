@@ -139,7 +139,7 @@ def group():
 
     elif request.method == "POST":
         if 'join_group' in request.form:
-            return apology
+            return apology("No Problem", 400)
 
         elif 'create_group' in request.form:
             if not request.form.get("group_name"):
