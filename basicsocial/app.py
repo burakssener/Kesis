@@ -118,8 +118,8 @@ def feed():
         users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
         return render_template("feed.html", users_groups=users_groups)
     if request.method == "POST":
-        user_input = request.form.get("text")
-        group_id = request.form.get("group_id")
+        user_input = str(request.form.get("text"))
+        group_id =int(request.form.get("group_id"))
         if not user_input or not group_id:
             return apology("user input?")
         db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", group_id, session["user_id"], user_input)
