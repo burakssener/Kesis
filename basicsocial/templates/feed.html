@@ -17,7 +17,7 @@
                             <label class = "lead text-center fs-5 mb-3">Choose Group!</label>
                             <select class="form-select form-select-sm mb-3" name="group_name">
                                 {%for group in users_groups%}
-                                        <option>
+                                        <option value ="{{group['group_id']}}">
                                             {{group["group_name"]}}
                                         </option>
                                 {%endfor%}
