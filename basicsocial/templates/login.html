@@ -6,12 +6,13 @@
 
 {% block main %}
     <div class="container ">
-        <h1 class = "display-4">Welcome to your cozy blanket...</h1>
+
     </div>
 
-    <div class="container ">
+    <div class="container mb-5 ">
         <div class ="row align-items-center">
             <div class=" col-6 ">
+                <h1 class = "display-4 text-center mb-5">Welcome to your cozy blanket...</h1>
                 <form action="/login" method="post">
                     <div class="form-group">
                         <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
@@ -22,25 +23,25 @@
                     <button type="submit" class="btn btn-primary" type="submit">Log In</button>
                 </form>
             </div>
-            <div id="carouselExample" class=" col-6 carousel slide">
+            <div id="carouselExample" class=" col-6 carousel slide ">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <img src="/static/reading.png" class="d-block w-20" alt="...">
-                    <div class="carousel-caption d-none d-md-block ">
-                        <h3 class="align-items-center">Slide 1</h3>
+                    <div class="carousel-caption d-none d-md-block text-center ">
+                        <h3>Slide 1</h3>
                         <p>This is the caption for slide 1.</p>
                     </div>
                   </div>
                   <div class="carousel-item">
                     <img src="/static/find-my-friend.png" class="d-block w-20" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-none d-md-block text-center ">
                         <h3>Slide 2</h3>
                         <p>This is the caption for slide 2.</p>
                     </div>
                   </div>
                   <div class="carousel-item">
                     <img src="/static/searching.png" class="d-block w-20" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-none d-md-block text-center ">
                         <h3>Slide 3</h3>
                         <p>This is the caption for slide 3.</p>
                     </div>
