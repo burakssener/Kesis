@@ -191,7 +191,7 @@ def profile():
 def group_details(group_name):
     if request.method == "GET":
         all_groups = db.execute("SELECT group_name FROM groups")
-        if not any(d['group_name'] == group_name in d for d in all_groups):
+        if not any(d['group_name'] == group_name for d in all_groups):
             return apology("There is no such a group", 403)
         user_groups = db.execute("SELECT group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
         eligible = 0
