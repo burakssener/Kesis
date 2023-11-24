@@ -144,7 +144,7 @@ def group():
         if 'join_group' in request.form:
             group_id = int(request.form.get("group_id"))
             group_name = db.execute("SELECT group_name FROM groups WHERE group_id = ?", group_id)
-            return redirect(url_for("join", group_name= group_name[0][group_name]))
+            return redirect(url_for("join", group_name= (group_name[0])[group_name]))
 
         elif 'create_group' in request.form:
             if not request.form.get("group_name"):
