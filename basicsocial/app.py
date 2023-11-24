@@ -204,6 +204,16 @@ def group_details(group_name):
         else:
             return redirect("/groups/<group_name>/lock")
 
+@app.route("/groups/<group_name>/lock", methods=["GET"])
+@login_required
+def group_details(group_name):
+    if request.method == "GET":
+        all_groups = db.execute("SELECT group_name FROM groups")
+        if not any(d['group_name'] == group_name for d in all_groups):
+            return apology("There is no such a group", 403)
+        else:
+            
+
 
 
 
