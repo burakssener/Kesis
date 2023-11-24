@@ -199,7 +199,13 @@ def group_details(group_name):
             users_posts = db.execute("SELECT USERS.username, GROUPS.group_name, POSTS.content, POSTS.date FROM posts JOIN users ON USERS.id = POSTS.user_id JOIN groups ON GROUPS.group_id = POSTS.group_id WHERE GROUPS.group_name = ? ", group_name)
             return render_template("group_detail.html", group_name = group_name ,users_posts=reversed(users_posts))
         else:
-            return redirect("/profile")
+            return redirect("/lock/<group_name>")
+
+@app.route("/lock/<group_name>", methods=["GET"])
+@login_required
+def join(group_name):
+    return render_template("lock.html")
+
 
 
 
