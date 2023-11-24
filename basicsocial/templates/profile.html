@@ -38,8 +38,11 @@
                             </td>
                         {%endfor%}
                         <td>
-                            <button href ="/groups/{{group['group_name']}}" type="button" name = "view" class="btn btn-success">View!</button>
+                            <form action="/groups/{{group['group_name']}}" method="get">
+                                <button type="submit" name="view" class="btn btn-success">View!</button>
+                            </form>
                         </td>
+
                     </tr>
                 {%endfor%}
             </table>
