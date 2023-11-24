@@ -190,6 +190,8 @@ def profile():
 @login_required
 def group_details(group_name):
     if request.method == "GET":
+        all_groups = db.execute("SELECT group_name FROM groups)
+        if group_name not in
         user_groups = db.execute("SELECT group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
         eligible = 0
         for group in user_groups:
@@ -199,13 +201,7 @@ def group_details(group_name):
             users_posts = db.execute("SELECT USERS.username, GROUPS.group_name, POSTS.content, POSTS.date FROM posts JOIN users ON USERS.id = POSTS.user_id JOIN groups ON GROUPS.group_id = POSTS.group_id WHERE GROUPS.group_name = ? ", group_name)
             return render_template("group_detail.html", group_name = group_name ,users_posts=reversed(users_posts))
         else:
-            return redirect("/lock/<group_name>")
-
-@app.route("/lock/<group_name>", methods=["GET"])
-@login_required
-def join(group_name):
-    return render_template("lock.html")
-
+            return render_template("lock.html", group_name = group_name)
 
 
 
