@@ -213,6 +213,14 @@ def join(group_name):
             return apology("There is no such a group", 403)
         else:
             return render_template("lock.html", group_name = group_name)
+    if request.method == "POST":
+        password = request.form.get("password")
+        group_info = db.execute("SELECT group_pass, group_id FROM groups WHERE group_name = ?", group_name)
+        if password == group_password:
+            group_id = int(group_info[0]["group_id"])
+            db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id)
+            return redirect("/profile")
+
 
 
 
