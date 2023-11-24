@@ -209,11 +209,7 @@ def group_details(group_name):
 def join(group_name):
     if request.method == "GET":
         all_groups = db.execute("SELECT group_name FROM groups")
-        presence = 0
-        for group in all_groups:
-            if group["group_name"] == group_name:
-                presence = 1
-        if presence == 0:
+        if not any(d['group_name'] == group_name for d in all_groups):
             return apology("There is no such a group", 403)
         else:
             return render_template("lock.html", group_name = group_name)
