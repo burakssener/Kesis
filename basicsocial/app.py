@@ -190,8 +190,14 @@ def profile():
 @login_required
 def group_details(group_name):
     if request.method == "GET":
-        users_posts = db.execute("SELECT USERS.username, GROUPS.group_name, POSTS.content, POSTS.date FROM posts JOIN users ON USERS.id = POSTS.user_id JOIN groups ON GROUPS.group_id = POSTS.group_id WHERE GROUPS.group_name = ? ", group_name)
-        return render_template("group_detail.html", users_posts=reversed(users_posts))
+        user_groups = db.execute("SELECT group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+        eligible = 0
+        for group in user_groups:
+            if group_name == group["group_name"]:
+                eligible = 1
+        if eligible == 1:
+            users_posts = db.execute("SELECT USERS.username, GROUPS.group_name, POSTS.content, POSTS.date FROM posts JOIN users ON USERS.id = POSTS.user_id JOIN groups ON GROUPS.group_id = POSTS.group_id WHERE GROUPS.group_name = ? ", group_name)
+            return render_template("group_detail.html", group_name = group_name ,users_posts=reversed(users_posts))
 
 
 
