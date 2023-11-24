@@ -206,7 +206,7 @@ def group_details(group_name):
 
 @app.route("/groups/<group_name>/lock", methods=["GET"])
 @login_required
-def group_details(group_name):
+def join(group_name):
     if request.method == "GET":
         all_groups = db.execute("SELECT group_name FROM groups")
         if not any(d['group_name'] == group_name for d in all_groups):
