@@ -186,10 +186,10 @@ def profile():
 
 
 
-@app.route("/sell", methods=["GET", "POST"])
+@app.route("/groups/<group_name>", methods=["GET", "POST"])
 @login_required
-def buy():
-    return apology
+def group_details(group_name):
+    
 
 
 
