@@ -143,7 +143,8 @@ def group():
     elif request.method == "POST":
         if 'join_group' in request.form:
             group_id = int(request.form.get("group_id"))
-            return redirect("/groups/<group_id>/lock")
+            group_name = db.execute("SELECT group_name FROM groups WHERE group_id = ?", group_id)
+            return redirect("/groups/<group_name>/lock")
 
         elif 'create_group' in request.form:
             if not request.form.get("group_name"):
