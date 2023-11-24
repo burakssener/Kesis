@@ -189,7 +189,8 @@ def profile():
 @app.route("/groups/<group_name>", methods=["GET", "POST"])
 @login_required
 def group_details(group_name):
-    
+    return apology
+
 
 
 
