@@ -221,7 +221,7 @@ def join(group_name):
             db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id)
             return redirect(url_for(group_details, group_name = group_name))
         else:
-            return render_template("lock.html", group_name = group_name)
+            return redirect(url_for(join, group_name = group_name))
 
 
 
