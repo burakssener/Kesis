@@ -6,7 +6,11 @@
 
 {% block main %}
     <div class = "container">
-        <h1 class = "display-2 align-middle"> {{group_name}} </h1>
+        <div class="card">
+            <div class="card-body">
+                <h1 class = "display-3 align-middle"> {{group_name}} </h1>
+            </div>
+        </div>
         {% for post in users_posts %}
             <div class="container">
                 <div class="row">
