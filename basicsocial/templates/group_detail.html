@@ -5,11 +5,23 @@
 {% endblock %}
 
 {% block main %}
-    <div  class = "post" class="w-25 p-3 justify-content-center" style="background-color: #cce8fc; >
-        <h2 class="username">Username</h2>
-        <p class="content">This is the post content.</p>
-        <p class="time">11/21/2023</p>
+    <div class = "container">
+        {% for post in users_posts %}
+            <div class="container">
+                <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post["username"]}} </h5>
+                        <p class="font-italic">from {{post["group_name"]}}</p>
+                        <p class="card-text">{{post["content"]}}</p>
+                        <p class="card-text"><small class="text-muted">{{post["date"]}}</small></p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-
 
 {% endblock %}
