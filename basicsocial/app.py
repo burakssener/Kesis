@@ -144,7 +144,7 @@ def group():
         if 'join_group' in request.form:
             group_id = int(request.form.get("group_id"))
             group_name = db.execute("SELECT group_name FROM groups WHERE group_id = ?", group_id)
-            return redirect("/groups/<group_name>/lock", group_name= group_name)
+            return redirect(url_for("/groups/<group_name>/lock", group_name= group_name))
 
         elif 'create_group' in request.form:
             if not request.form.get("group_name"):
@@ -202,7 +202,7 @@ def group_details(group_name):
             users_posts = db.execute("SELECT USERS.username, GROUPS.group_name, POSTS.content, POSTS.date FROM posts JOIN users ON USERS.id = POSTS.user_id JOIN groups ON GROUPS.group_id = POSTS.group_id WHERE GROUPS.group_name = ? ", group_name)
             return render_template("group_detail.html", group_name = group_name ,users_posts=reversed(users_posts))
         else:
-            return redirect("/groups/<group_name>/lock", group_name= group_name )
+            return redirect(url_for("/groups/<group_name>/lock", group_name= group_name))
 
 @app.route("/groups/<group_name>/lock", methods=["GET"])
 @login_required
