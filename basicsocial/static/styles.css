@@ -105,9 +105,10 @@ form {
 
 .logo
 {
-   
+   width: 100px;
+   height: auto;
    position: absolute ;
-   margin-top: 15px ;
+   margin-top: 3px ;
    margin—left: 10px ;
 
 }
