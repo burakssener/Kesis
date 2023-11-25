@@ -205,7 +205,8 @@ def group_details(group_name):
     if request.method == "GET":
         all_groups = db.execute("SELECT group_name FROM groups")
         if not any(d['group_name'] == group_name for d in all_groups):
-            return apology("There is no such a group", 403)
+            flash("There is no such a group.", category='error')
+            return render_template("groups.html")
         user_groups = db.execute("SELECT group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
         eligible = 0
         for group in user_groups:
@@ -226,7 +227,9 @@ def group_details(group_name):
             user_input = str(request.form.get("text"))
             group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name)
             if not user_input:
-                return apology("user input?")
+                flash("The text box is empty.", category='error')
+                return redirect(url_for('group_details', group_name = group_name))
+
             db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id[0]["group_id"], user_input)
             return redirect(url_for('group_details', group_name = group_name))
         else:
@@ -239,7 +242,9 @@ def join(group_name):
     if request.method == "GET":
         all_groups = db.execute("SELECT group_name FROM groups")
         if not any(d['group_name'] == group_name for d in all_groups):
-            return apology("There is no such a group", 403)
+            flash("There is no such a group.", category='error')
+            return render_template("groups.html")
+
         else:
             return render_template("lock.html", group_name = group_name)
     if request.method == "POST":
