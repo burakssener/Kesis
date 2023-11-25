@@ -204,16 +204,17 @@ def group_details(group_name):
         else:
             return redirect(url_for('join', group_name = group_name))
     if request.method == "POST":
+        user_groups = db.execute("SELECT group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
         eligible = 0
         for group in user_groups:
             if group_name == group["group_name"]:
                 eligible = 1
         if eligible == 1:
             user_input = str(request.form.get("text"))
-            group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name = group_name)[0]["group_id"]
+            group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name)
             if not user_input:
                 return apology("user input?")
-            db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id, user_input)
+            db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id[0]["group_id"], user_input)
             return redirect(url_for('group_details', group_name = group_name))
         else:
             return redirect(url_for('join', group_name = group_name))

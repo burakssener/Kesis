@@ -6,6 +6,7 @@
 
 {% block main %}
     <div class = "pt-5">
+        <h1 class = "display-4 text-center mb-5">Welcome to KESIS...</h1>
         <form action="/register" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" id="r_username" name="username" placeholder="Enter username">
@@ -16,10 +17,10 @@
             <div class="form-group">
                 <input type="password" class="form-control" id="cr_password" name="confirmation" placeholder="Confirm password">
             </div>
-            <div class="form-grouppt-5">
+            <div class="form-group">
                 <label class="navbar-brand fs-5">Birthday</label>
                 <input type="date" class="form-control" id="birthday" name="birthday">
-             </div>
+             </div class = "pt-5">
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
