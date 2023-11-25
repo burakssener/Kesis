@@ -186,7 +186,7 @@ def profile():
 
 
 
-@app.route("/groups/<group_name>", methods=["GET"])
+@app.route("/groups/<group_name>", methods=["GET", "POST"])
 @login_required
 def group_details(group_name):
     if request.method == "GET":
@@ -204,12 +204,19 @@ def group_details(group_name):
         else:
             return redirect(url_for('join', group_name = group_name))
     if request.method == "POST":
-        user_input = str(request.form.get("text"))
-        group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name = group_name)[0]["group_id"]
-        if not user_input:
-            return apology("user input?")
-        db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id, user_input)
-        return redirect(url_for('group_details', group_name = group_name))
+        eligible = 0
+        for group in user_groups:
+            if group_name == group["group_name"]:
+                eligible = 1
+        if eligible == 1:
+            user_input = str(request.form.get("text"))
+            group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name = group_name)[0]["group_id"]
+            if not user_input:
+                return apology("user input?")
+            db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id, user_input)
+            return redirect(url_for('group_details', group_name = group_name))
+        else:
+            
 
 @app.route("/groups/<group_name>/lock", methods=["GET","POST"])
 @login_required
