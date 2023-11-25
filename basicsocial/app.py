@@ -205,8 +205,8 @@ def group_details(group_name):
             return redirect(url_for('join', group_name = group_name))
     if request.method == "POST":
         user_input = str(request.form.get("text"))
-        group_id =int(request.form.get("group_id"))
-        if not user_input or not group_id:
+        group_id = db.execute("SELECT * FROM ")
+        if not user_input:
             return apology("user input?")
         db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id, user_input)
         return redirect("/feed")
