@@ -203,6 +203,13 @@ def group_details(group_name):
             return render_template("group_detail.html", group_name = group_name ,users_posts=reversed(users_posts))
         else:
             return redirect(url_for('join', group_name = group_name))
+    if request.method == "POST":
+        user_input = str(request.form.get("text"))
+        group_id =int(request.form.get("group_id"))
+        if not user_input or not group_id:
+            return apology("user input?")
+        db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id, user_input)
+        return redirect("/feed")
 
 @app.route("/groups/<group_name>/lock", methods=["GET","POST"])
 @login_required
