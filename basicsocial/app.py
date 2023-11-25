@@ -214,9 +214,8 @@ def join(group_name):
         else:
             return render_template("lock.html", group_name = group_name)
     if request.method == "POST":
-        password = request.form.get("password")
         group_info = db.execute("SELECT group_pass, group_id FROM groups WHERE group_name = ?", group_name)
-        if generate_password_hash(password) == group_info[0]["group_pass"]:
+        if check_password_hash(group_info[0]["group_pass"], request.form.get("password")):
             group_id = int(group_info[0]["group_id"])
             db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id)
             return redirect(url_for('group_details', group_name = group_name))
