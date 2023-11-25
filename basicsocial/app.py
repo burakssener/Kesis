@@ -209,7 +209,7 @@ def group_details(group_name):
         if not user_input:
             return apology("user input?")
         db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id, user_input)
-        return redirect("/feed")
+        return redirect(url_for('group_details', group_name = group_name))
 
 @app.route("/groups/<group_name>/lock", methods=["GET","POST"])
 @login_required

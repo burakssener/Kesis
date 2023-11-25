@@ -5,7 +5,22 @@
 {% endblock %}
 
 {% block main %}
+
     <div class = "container">
+        <div class="row mb-3">
+            <div>
+                <form action="/feed" method="post" class="col-8">
+                    <div class="row">
+                        <div class="col-10">
+                            <textarea class="form-control w-100" name="text" rows="3" placeholder ="What's happening?"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3" class="row">
+                        <button type="submit" class="btn btn-primary">Kesis!</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="card">
             <div class="card-body">
                 <h1 class = "display-3 align-middle"> {{group_name}} </h1>
