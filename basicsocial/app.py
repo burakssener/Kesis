@@ -77,18 +77,21 @@ def login():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            flash("Must provide username.", category='error' )
+            return render_template("login.html")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            flash("must provide password", category='error' )
+            return render_template("login.html")
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("invalid username and/or password", 403)
+            flash("invalid username and/or password", category='error')
+            return render_template("login.html")
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -127,7 +130,8 @@ def feed():
         user_input = str(request.form.get("text"))
         group_id =int(request.form.get("group_id"))
         if not user_input or not group_id:
-            return apology("user input?")
+            flash("You must enter a text.", category='error')
+            return render_template("feed.html")
         db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id, user_input)
         return redirect("/feed")
 
@@ -152,20 +156,25 @@ def group():
 
         elif 'create_group' in request.form:
             if not request.form.get("group_name"):
-                return apology("must provide group_name", 400)
+                flash("Must provide group name.", category='error')
+                return render_template("groups.html")
             else:
                 group_name = request.form.get("group_name")
                 if not request.form.get("password") or not request.form.get("confirmation"):
-                    return apology("must provide password", 400)
+                    flash("Must provide password.", category='error')
+                    return render_template("groups.html")
                 else:
                     password = request.form.get("password")
                     crpassword = request.form.get("confirmation")
                     groups = db.execute("SELECT group_name FROM groups WHERE group_name= ? ", group_name)
                     if  password != crpassword:
-                        return apology("must provide password", 400)
+                        flash("Your confirmation doesn't match.", category='error')
+                        return render_template("groups.html")
                     for group in groups:
                         if group_name == group["group_name"]:
-                            return apology("This group_name is taken", 400)
+                            flash("This group_name is taken.", category='error')
+                            return render_template("groups.html")
+
                     db.execute("INSERT INTO groups (group_name, group_pass) VALUES (?, ?)", group_name, generate_password_hash(password))
                     group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name)[0]
                     db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id["group_id"] )
