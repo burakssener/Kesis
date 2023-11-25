@@ -38,25 +38,28 @@ def register():
 
     elif request.method == "POST":
         if not request.form.get("username"):
-            flash("must provide username", category='error')
+            flash("You must provide username.", category='error')
             return render_template("register.html")
         else:
             username = request.form.get("username")
             if not request.form.get("password") or not request.form.get("confirmation"):
-                flash("must provide password", category='error')
+                flash("You must provide password.", category='error')
                 return render_template("register.html")
             else:
                 password = request.form.get("password")
                 crpassword = request.form.get("confirmation")
                 users = db.execute("SELECT username FROM users WHERE username= ? ", username)
                 if  password != crpassword:
-                    return apology("must provide password", 400)
+                    flash("Confirmed password doesn't match.", category='error')
+                    return render_template("register.html")
                 for user in users:
                     if username == user["username"]:
-                        return apology("This username is taken", 400)
+                        flash("This username is taken.", category='error')
+                        return render_template("register.html")
                 birthday = request.form.get("birthday")
                 if not birthday:
-                    return apology("No birthday entered", 400)
+                    flash("You must provide birthday.", category='error')
+                    return render_template("register.html")
                 db.execute("INSERT INTO users (username, hash, birthday) VALUES (?, ?, ?)", username, generate_password_hash(password), birthday)
                 return render_template("login.html")
 
