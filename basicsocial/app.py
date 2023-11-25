@@ -39,27 +39,27 @@ def register():
     elif request.method == "POST":
         if not request.form.get("username"):
             flash("You must provide username.", category='error')
-            return render_template("register.html")
+            return redirect("/register")
         else:
             username = request.form.get("username")
             if not request.form.get("password") or not request.form.get("confirmation"):
                 flash("You must provide password.", category='error')
-                return render_template("register.html")
+                return redirect("/register")
             else:
                 password = request.form.get("password")
                 crpassword = request.form.get("confirmation")
                 users = db.execute("SELECT username FROM users WHERE username= ? ", username)
                 if  password != crpassword:
                     flash("Confirmed password doesn't match.", category='error')
-                    return render_template("register.html")
+                    return redirect("/register")
                 for user in users:
                     if username == user["username"]:
                         flash("This username is taken.", category='error')
-                        return render_template("register.html")
+                        return redirect("/register")
                 birthday = request.form.get("birthday")
                 if not birthday:
                     flash("You must provide birthday.", category='error')
-                    return render_template("register.html")
+                    return redirect("/register")
                 db.execute("INSERT INTO users (username, hash, birthday) VALUES (?, ?, ?)", username, generate_password_hash(password), birthday)
                 return render_template("login.html")
 
@@ -78,12 +78,12 @@ def login():
         # Ensure username was submitted
         if not request.form.get("username"):
             flash("Must provide username.", category='error' )
-            return render_template("login.html")
+            return redirect("/login")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
             flash("must provide password", category='error' )
-            return render_template("login.html")
+            return redirect("/login")
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
@@ -157,23 +157,23 @@ def group():
         elif 'create_group' in request.form:
             if not request.form.get("group_name"):
                 flash("Must provide group name.", category='error')
-                return render_template("groups.html")
+                return redirect("/groups")
             else:
                 group_name = request.form.get("group_name")
                 if not request.form.get("password") or not request.form.get("confirmation"):
                     flash("Must provide password.", category='error')
-                    return render_template("groups.html")
+                    return redirect("/groups")
                 else:
                     password = request.form.get("password")
                     crpassword = request.form.get("confirmation")
                     groups = db.execute("SELECT group_name FROM groups WHERE group_name= ? ", group_name)
                     if  password != crpassword:
                         flash("Your confirmation doesn't match.", category='error')
-                        return render_template("groups.html")
+                        return redirect("/groups")
                     for group in groups:
                         if group_name == group["group_name"]:
                             flash("This group_name is taken.", category='error')
-                            return render_template("groups.html")
+                            return redirect("/groups")
 
                     db.execute("INSERT INTO groups (group_name, group_pass) VALUES (?, ?)", group_name, generate_password_hash(password))
                     group_id = db.execute("SELECT group_id FROM groups WHERE group_name = ?", group_name)[0]
@@ -206,7 +206,7 @@ def group_details(group_name):
         all_groups = db.execute("SELECT group_name FROM groups")
         if not any(d['group_name'] == group_name for d in all_groups):
             flash("There is no such a group.", category='error')
-            return render_template("groups.html")
+            return redirect("/groups")
         user_groups = db.execute("SELECT group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
         eligible = 0
         for group in user_groups:
@@ -243,7 +243,7 @@ def join(group_name):
         all_groups = db.execute("SELECT group_name FROM groups")
         if not any(d['group_name'] == group_name for d in all_groups):
             flash("There is no such a group.", category='error')
-            return render_template("groups.html")
+            return redirect("/groups")
 
         else:
             return render_template("lock.html", group_name = group_name)
