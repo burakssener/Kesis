@@ -37,13 +37,14 @@ def register():
         return render_template("register.html")
 
     elif request.method == "POST":
-
         if not request.form.get("username"):
-            return apology("must provide username", 400)
+            flash("must provide username", category='error')
+            return render_template("register.html")
         else:
             username = request.form.get("username")
             if not request.form.get("password") or not request.form.get("confirmation"):
-                return apology("must provide password", 400)
+                flash("must provide password", category='error')
+                return render_template("register.html")
             else:
                 password = request.form.get("password")
                 crpassword = request.form.get("confirmation")
