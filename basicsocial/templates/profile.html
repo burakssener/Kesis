@@ -25,15 +25,15 @@
         <div class = "col-8">
             <h1 class="display-6"> Your Groups</h1>
             <table class="table table-striped">
-                <tr>
+                <tr class="text-center">
                     <th>Group Id</th>
                     <th>Group Name</th>
-                    <th class="text-center">Viewing</th>
+                    <th>Viewing</th>
                 </tr>
                 {%for group in users_groups%}
                     <tr>
                         {%for data in group.values()%}
-                            <td>
+                            <td class="text-center">
                                 {{data}}
                             </td>
                         {%endfor%}
