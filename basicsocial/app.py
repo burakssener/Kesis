@@ -204,7 +204,7 @@ def group_details(group_name):
         else:
             return redirect(url_for('join', group_name = group_name))
 
-@app.route("/groups/<group_name>/lock", methods=["GET"])
+@app.route("/groups/<group_name>/lock", methods=["GET","POST"])
 @login_required
 def join(group_name):
     if request.method == "GET":

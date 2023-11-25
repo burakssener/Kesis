@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h1 class = "display-3 align-middle"> {{group_name}} </h1>
             </div>
-        <form action="/join" method="post">
+        <form action="{{ url_for('join', group_name=group_name) }}" method="post">
             <div class="form-group">
                 <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
             </div>
