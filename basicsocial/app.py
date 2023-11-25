@@ -216,7 +216,8 @@ def group_details(group_name):
             db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id, user_input)
             return redirect(url_for('group_details', group_name = group_name))
         else:
-            
+            return redirect(url_for('join', group_name = group_name))
+
 
 @app.route("/groups/<group_name>/lock", methods=["GET","POST"])
 @login_required
