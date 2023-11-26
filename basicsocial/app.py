@@ -61,6 +61,7 @@ def register():
                     flash("You must provide birthday.", category='error')
                     return redirect("/register")
                 db.execute("INSERT INTO users (username, hash, birthday) VALUES (?, ?, ?)", username, generate_password_hash(password), birthday)
+                flash("You joined your new community successfully!", category='success')
                 return render_template("login.html")
 
 
@@ -97,6 +98,7 @@ def login():
         session["user_id"] = rows[0]["id"]
 
         # Redirect user to home page
+        flash("You logged in!", category='success')
         return redirect("/")
 
     # User reached route via GET (as by clicking a link or via redirect)
@@ -234,8 +236,10 @@ def group_details(group_name):
                 return redirect(url_for('group_details', group_name = group_name))
 
             db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id[0]["group_id"], user_input)
+            flash("You KESISED a new post!", category='success')
             return redirect(url_for('group_details', group_name = group_name))
         else:
+            flash("You are not eligible to see this content.", category='error')
             return redirect(url_for('join', group_name = group_name))
 
 
@@ -255,6 +259,7 @@ def join(group_name):
         if check_password_hash(group_info[0]["group_pass"], request.form.get("password")):
             group_id = int(group_info[0]["group_id"])
             db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id)
+            flash("You joined your new community successfully!", category='success')
             return redirect(url_for('group_details', group_name = group_name))
         else:
             return redirect(url_for('join', group_name = group_name))
