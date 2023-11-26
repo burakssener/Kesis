@@ -61,7 +61,7 @@ def register():
                     flash("You must provide birthday.", category='error')
                     return redirect("/register")
                 db.execute("INSERT INTO users (username, hash, birthday) VALUES (?, ?, ?)", username, generate_password_hash(password), birthday)
-                flash("You joined your new community successfully!", category='success')
+                flash("You created your KESIS account!", category='success')
                 return render_template("login.html")
 
 
