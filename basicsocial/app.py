@@ -133,6 +133,7 @@ def feed():
             flash("You must enter a text.", category='error')
             return redirect("/feed")
         db.execute("INSERT INTO posts (user_id, group_id, content) VALUES (?, ?, ?)", session["user_id"], group_id, user_input)
+        flash("You KESISED successfully.", category='success')
         return redirect("/feed")
 
 
