@@ -153,6 +153,7 @@ def group():
         if 'join_group' in request.form:
             group_id = int(request.form.get("group_id"))
             group_name = db.execute("SELECT group_name FROM groups WHERE group_id = ?", group_id)
+            flash("You joined your new community successfully!", category='success')
             return redirect(url_for("join", group_name= group_name[0]["group_name"]))
 
         elif 'create_group' in request.form:
@@ -181,6 +182,7 @@ def group():
                     db.execute("INSERT INTO group_members (user_id, group_id) VALUES (?, ?)", session["user_id"], group_id["group_id"] )
                     users_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
                     discover_groups = db.execute("SELECT group_id, group_name FROM groups WHERE group_id NOT IN (SELECT group_id FROM group_members WHERE user_id = ?)", session["user_id"])
+                    flash("Congrats! Your group is created!.", category='success')
                     return render_template("groups.html", users_groups=users_groups, discover_groups=discover_groups)
 
 
