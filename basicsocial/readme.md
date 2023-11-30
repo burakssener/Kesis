@@ -44,7 +44,7 @@ I used 2 different form and people can see all groups and creating group options
 /profile:
 * Profile Information
 * View option for all groups that user joined
-Jinja2 and sqlite3 is used to show the information. and redirected to the groups/<>
+Jinja2 and sqlite3 is used to show the information. and redirected to the /groups/{{group['group_name']}} with the jinja2.
 
 /groups/<group_name>:
 
