@@ -21,6 +21,7 @@ KESIS is a social media that allows you:
 sqlite table:
 
 
+
 Python-Flask and Jinja2:
 /: displaying homepage that can direct users and inform.
 
