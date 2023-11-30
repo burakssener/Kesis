@@ -1,7 +1,7 @@
 # KESIS: A Social Media for Private Communities
 
 ## Video Demo:
-If you l learn better in a shorter time, [Watch this short video!](google.com)
+To learn better in a shorter time,[Watch this short video!](google.com)
 
 ### What is KESIS?
 
