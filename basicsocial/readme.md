@@ -31,7 +31,11 @@ Registering users and by hashing storing people's passwords to ensure security.A
 
 
 #### /feed:
-In the feed there is 2 different part. People can share posts. And can see all the posts from the groups that they joined. For the database I used SQL library of  I used Jinja2 template to show all options people can choose when publishing and also
+In the feed there is 2 different part.
+* People can share posts the groups that they choosed.
+* can see all the posts from the groups that they joined
+
+For the database I used SQL library function of cs50. To show all options in group people can choose when publishing and also seeing all posts that from the groups that they joined by getting data from sql Jinja2 template
 
 /groups:
 
