@@ -22,7 +22,7 @@ KESIS is a social media platform that allows you to:
 ![Sql Structure](database.png)
 
 
-### Explaining Functions:
+### Functions Explanations:
 #### /:
 Displays the homepage that can direct users and inform.
 
