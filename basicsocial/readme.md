@@ -19,7 +19,8 @@ KESIS is a social media platform that allows you to:
 ## Briefly Functionality of Kesis
 
 ## SQLite3 Database Diagram:
-![Sql Structure](database.png)
+<img src="/static/database.png" style="width:200px; height: auto;"/>
+
 
 
 ## Function Explanations:
