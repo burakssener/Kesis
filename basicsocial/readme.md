@@ -1,17 +1,17 @@
 # Kesis: A Social Media for Private Communities
 
 # Video Demo:
-To learn better in a shorter time,[Watch this short video!](google.com)
+To learn more in a shorter time,[Watch this short video!](google.com)
 
 ## What is Kesis?
 
-This is Kesis. You can find your community that you are seeking here!
+Kesis is where you can find the community you're seeking!
 
 ## Features
-KESIS is a social media that allows you:
-* To create your own private communities
-* Share posts and communicate with other members.
-* Explore and discover new communities and topics that interest you.
+KESIS is a social media platform that allows you to:
+*Create your own private communities
+*Share posts and communicate with other members
+*Explore and discover new communities and topics that interest you
 
 ## Technologies and Tools
 **_Python-Flask, Jinja2, sqlite3, html, css, bootstrap_**
@@ -24,10 +24,10 @@ KESIS is a social media that allows you:
 
 ### Python-Flask and Jinja2:
 #### /:
-Displaying homepage that can direct users and inform.
+Displays the homepage that can direct users and inform.
 
 #### /register, /login /logout:
-Registering users and by hashing storing people's passwords to ensure security.And after authorization storing in the sqlite3.
+Registers users and securely stores their passwords by hashing. After authorization, the information is stored in SQLite3.
 
 
 #### /feed:
