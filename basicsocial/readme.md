@@ -14,15 +14,15 @@ KESIS is a social media that allows you:
 * Explore and discover new communities and topics that interest you.
 
 ## Technologies and Tools
-** Python-Flask, Jinja2, sqlite3, html, css, bootstrap **
+**_Python-Flask, Jinja2, sqlite3, html, css, bootstrap_**
 
 ## Functionality
 
-### sqlite table:
+### SQLite3 Database Diagram:
 ![Sql Structure](database.png)
 
 
-Python-Flask and Jinja2:
+### Python-Flask and Jinja2:
 /: displaying homepage that can direct users and inform.
 
 /register, /login /logout:: registering users and by hashing storing people's passwords to ensure security.And after authorization storing in the sqlite3.
