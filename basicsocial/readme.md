@@ -1,24 +1,24 @@
 # KESIS: A Social Media for Private Communities
 
-## Video Demo:
+# Video Demo:
 To learn better in a shorter time,[Watch this short video!](google.com)
 
-### What is KESIS?
+## What is KESIS?
 
 This is KESIS. You can find your community that you are seeking here!
 
-### Features
+## Features
 KESIS is a social media that allows you:
 * To create your own private communities
 * Share posts and communicate with other members.
 * Explore and discover new communities and topics that interest you.
 
-### Technologies and Tools
+## Technologies and Tools
 ** Python-Flask, Jinja2, sqlite3, html, css, bootstrap **
 
-### Functionality
+## Functionality
 
-sqlite table:
+### sqlite table:
 ![Sql Structure](database.png)
 
 
