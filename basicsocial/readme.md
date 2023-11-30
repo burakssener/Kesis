@@ -16,7 +16,7 @@ KESIS is a social media that allows you:
 ## Technologies and Tools
 **_Python-Flask, Jinja2, sqlite3, html, css, bootstrap_**
 
-## Functionality
+## Functionality of Kesis
 
 ### SQLite3 Database Diagram:
 ![Sql Structure](database.png)
@@ -52,7 +52,9 @@ Jinja2 and sqlite3 is used to show the information. and redirected to the /group
 *Validating if the logged in user is already in the group_members table. And if the person is not eligible redirecting to groups/<group_name>.
 
 /groups/<group_name>/lock:
-*Protection system to ensure 
+*Join groups from here by entering password.
+*Protection system to ensure people that don't know group password don't access content
+When people are joining the group and If any user try to access groups that he didn't joined, he will automatically redirected to this page.
 
 
 
