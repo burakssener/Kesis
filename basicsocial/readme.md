@@ -39,6 +39,9 @@ To show all options people's group and all posts that from the groups that they 
 
 /groups:
 In the groups there is 2 different part.
+* Creating Groups
+* Joining Groups
+I used 2 different form
 
 /profile:
 
