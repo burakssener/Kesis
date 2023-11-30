@@ -18,7 +18,7 @@ KESIS is a social media platform that allows you to:
 
 ## Briefly Functionality of Kesis
 
-### SQLite3 Database Diagram:
+## SQLite3 Database Diagram:
 ![Sql Structure](database.png)
 
 
@@ -50,14 +50,14 @@ Jinja2 and SQLite3 are used to display the information, and users are redirected
 
 
 ### /groups/<group_name>:
-*View all group posts
-*Share posts to these gorup
+* View all group posts
+* Share posts to these gorup
 
 Validate if the logged-in user is already in the group_members table. If the person is not eligible, redirect to groups/<group_name>.
 
 ### /groups/<group_name>/lock:
-*Join groups from here by entering the password.
-*Protection system to ensure that people who don't know the group password can't access content
+* Join groups from here by entering the password.
+* Protection system to ensure that people who don't know the group password can't access content
 
 When users join the group, if any user tries to access groups they haven't joined, they will automatically be redirected to this page.
 
