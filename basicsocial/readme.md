@@ -35,7 +35,7 @@ In the feed there is 2 different part.
 * People can share posts the groups that they choosed.
 * can see all the posts from the groups that they joined
 
-For the database I used SQL library function of cs50. To show all options in group people can choose when publishing and also seeing all posts that from the groups that they joined by getting data from sql Jinja2 template
+For the database I used SQL library function of cs50. To show all options people's group and all posts that from the groups that they joined, I used this SQlİT and Jinja2 template
 
 /groups:
 
