@@ -31,6 +31,7 @@ Registering users and by hashing storing people's passwords to ensure security.A
 
 
 #### /feed:
+In the feed there is 2 different part. People can share posts. And can see all the posts from the groups that they joined. For the database I used SQL library of  I used Jinja2 template to show all options people can choose when publishing and also
 
 /groups:
 
