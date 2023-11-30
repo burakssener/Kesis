@@ -19,7 +19,7 @@ KESIS is a social media that allows you:
 ### Functionality
 
 sqlite table:
-![Sql Structure](basicsocial/static/database.png)
+![Sql Structure](database.png)
 
 
 Python-Flask and Jinja2:
