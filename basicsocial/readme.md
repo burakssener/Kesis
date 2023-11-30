@@ -47,6 +47,9 @@ I used 2 different form and people can see all groups and creating group options
 Jinja2 and sqlite3 is used to show the information. and redirected to the /groups/{{group['group_name']}} with the jinja2.
 
 /groups/<group_name>:
+*View all group posts
+*Share posts to these gorup
+*Validating if the logged in user is already in the group_members table. And if the person is not eligible redirecting to
 
 /groups/<group_name>/lock:
 
