@@ -14,11 +14,25 @@ KESIS is a social media that allows you:
 * Explore and discover new communities and topics that interest you.
 
 ### Technologies and Tools
+** Python-Flask, Jinja2, sqlite3, html, css, bootstrap **
 
-Python: I used Python as the back-end programming language for creating the logic and functionality of the app. Python allowed me to write concise and readable code and use various libraries and modules for different tasks.
+### Functionality
 
-Flask: I used Flask as the web framework for creating the web server and handling the requests and responses. Flask provided me with a lightweight and flexible solution that integrated well with Python and other tools.
-Jinja2: I used Jinja2 as the template engine for rendering the HTML pages and injecting the data from the back-end. Jinja2 enabled me to create dynamic and reusable templates and use control structures and filters for customizing the output.
+sqlite table:
+
+
+Python-Flask and Jinja2:
+/: displaying homepage that can direct users and inform.
+
+/register, /login /logout:: registering users and by hashing storing people's passwords to ensure security.And after authorization storing in the sqlite3.
+.
+
+/feed:
+/groups:
+/profile:
+/groups/<group_name>:
+/groups/<group_name>/lock:
+
 
 SQLite3: I used SQLite3 as the database for storing and retrieving the data, such as the user information, the community information, the posts information, etc. SQLite3 offered me a simple and portable solution that worked well with Flask and Python.
 HTML: I used HTML as the markup language for creating the structure and content of the web pages. HTML allowed me to define the elements and attributes of the web pages and use semantic tags for better accessibility and SEO.
