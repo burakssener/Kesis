@@ -42,7 +42,9 @@ To show all options people's group and all posts that from the groups that they 
 I used 2 different form and people can see all groups and creating group options in the same page. According to given form to the backend, new groups are being created. When people click join button for the other groups they are redirecting to the groups/<group_name>/lock:
 
 /profile:
-
+* Profile Information
+* View option for all groups that user joined
+Jinja2 and sqlite3 is used to show the information. and redirected to the groups/<>
 
 /groups/<group_name>:
 
