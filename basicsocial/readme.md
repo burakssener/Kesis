@@ -31,19 +31,18 @@ Registering users and by hashing storing people's passwords to ensure security.A
 
 
 #### /feed:
-In the feed there is 2 different part.
 * People can share posts the groups that they choosed.
 * can see all the posts from the groups that they joined
 
 To show all options people's group and all posts that from the groups that they joined, I used this SQLite3 and and Jinja2 template. For the database I used SQL library function of cs50.
 
 /groups:
-In the groups there is 2 different part.
 * Creating Groups
 * Joining Groups
-I used 2 different form
+I used 2 different form and people can see all groups and creating group options in the same page. According to given form to the backend, new groups are being created. When people click join button for the other groups they are redirecting to the groups/<group_name>/lock:
 
 /profile:
+
 
 /groups/<group_name>:
 
