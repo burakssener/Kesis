@@ -8,7 +8,10 @@ To learn better in a shorter time,[Watch this short video!](google.com)
 This is KESIS. You can find your community that you are seeking here!
 
 ### Features
-KESIS is a social media that allows you to create your own private communities to share posts and communicate with other members. You can also explore and discover new communities and topics that interest you.
+KESIS is a social media that allows you:
+* To create your own private communities
+* Share posts and communicate with other members.
+* Explore and discover new communities and topics that interest you.
 
 ### Technologies and Tools
 
