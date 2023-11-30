@@ -39,24 +39,27 @@ To display all options for a user's groups and all posts from the groups they ha
 #### /groups:
 * Creating Groups
 * Joining Groups
+
 I used two different forms, and users can see all group and create group options on the same page. New groups are created according to the given form in the backend. When users click the join button for other groups, they are redirected to groups/<group_name>/lock.
 
 #### /profile:
 * Profile Information
 * View options for all groups that the user has joined
+
 Jinja2 and SQLite3 are used to display the information, and users are redirected to /groups/{{group['group_name']}} with Jinja2.
 
-/groups/<group_name>:
 
 #### /groups/<group_name>:
 *View all group posts
 *Share posts to these gorup
-*Validating if the logged in user is already in the group_members table. And if the person is not eligible redirecting to groups/<group_name>.
+
+Validate if the logged-in user is already in the group_members table. If the person is not eligible, redirect to groups/<group_name>.
 
 #### /groups/<group_name>/lock:
-*Join groups from here by entering password.
-*Protection system to ensure people that don't know group password don't access content
-When people are joining the group and If any user try to access groups that he didn't joined, he will automatically redirected to this page.
+*Join groups from here by entering the password.
+*Protection system to ensure that people who don't know the group password can't access content
+
+When users join the group, if any user tries to access groups they haven't joined, they will automatically be redirected to this page.
 
 
 
