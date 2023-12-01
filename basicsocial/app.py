@@ -64,7 +64,7 @@ def register():
                 flash("You created your KESIS account!", category='success')
                 rows = db.execute("SELECT * FROM users WHERE username = ?", username)
                 session["user_id"] = rows[0]["id"]
-                return render_template("login.html")
+                return redirect("/")
 
 
 
