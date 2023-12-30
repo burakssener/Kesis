@@ -1,7 +1,7 @@
 # Kesis: A Social Media for Private Communities
 
 # Video Demo:
-To learn more in a shorter time,[Watch this short video!](google.com)
+To learn more in a shorter time,[Watch this short video!](https://www.youtube.com/watch?v=1YXpfPYnxjE)
 
 ## What is Kesis?
 
