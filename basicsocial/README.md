@@ -3,6 +3,7 @@
 # Video Demo:
 To learn more in a shorter time,[Watch this short video!](https://www.youtube.com/watch?v=1YXpfPYnxjE)
 
+# Description:
 ## What is Kesis?
 
 Kesis is where you can find the community you're seeking!
