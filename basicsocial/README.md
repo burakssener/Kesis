@@ -1,66 +1,88 @@
-# Kesis: A Social Media for Private Communities
+# Kesis: A Social Media Platform for Private Communities
 
-# Video Demo:
-To learn more in a shorter time,[Watch this short video!](https://www.youtube.com/watch?v=1YXpfPYnxjE)
+## Overview
+
+Kesis is a robust social media platform designed specifically for private communities. It provides users with the ability to create and join private groups, share posts, and engage with other members who share similar interests.
+
+## Video Demo
+
+For a quick overview of Kesis, check out this [short video demo](https://www.youtube.com/watch?v=1YXpfPYnxjE).
 
 ## What is Kesis?
 
-Kesis is where you can find the community you're seeking!
+Kesis serves as a hub where users can connect with like-minded individuals and build communities around shared interests.
 
 ## Features
-KESIS is a social media platform that allows you to:
-*Create your own private communities
-*Share posts and communicate with other members
-*Explore and discover new communities and topics that interest you
+
+Kesis offers the following key features:
+
+- **Create Private Communities:** Users can establish their own private communities tailored to their interests.
+
+- **Post Sharing and Communication:** Members can share posts and engage in discussions within their chosen groups.
+
+- **Explore and Discover:** Users have the opportunity to explore and discover new communities and topics that align with their preferences.
 
 ## Technologies and Tools
-**_Python-Flask, Jinja2, sqlite3, html, css, bootstrap_**
 
-## Briefly Functionality of Kesis
+Kesis is built using the following technologies and tools:
 
-### SQLite3 Database Diagram:
-<img src="./static/database.png"/>
+- **Python-Flask:** The web application framework that forms the backbone of Kesis.
 
+- **Jinja2:** A template engine for Python, utilized for rendering dynamic content.
 
+- **SQLite3:** The relational database management system employed to store user data securely.
 
-## Function Explanations:
-### /:
-Displays the homepage that can direct users and inform.
+- **HTML, CSS, Bootstrap:** Front-end technologies ensuring an intuitive and visually appealing user interface.
 
-### /register, /login /logout:
-Registers users and securely stores their passwords by hashing. After authorization, the information is stored in SQLite3.
+## Functionality of Kesis
 
+### SQLite3 Database Diagram
 
-### /feed:
-* Users can share posts in the groups they have chosen.
-* Users can see all posts from the groups they have joined.
+Below is a snapshot of the SQLite3 database schema used in Kesis:
 
-To display all options for a user's groups and all posts from the groups they have joined, I used SQLite3 and Jinja2 templates. For the database, I utilized the SQL library function of cs50.
+![SQLite3 Database Diagram](./static/database.png)
 
-### /groups:
-* Creating Groups
-* Joining Groups
+### Function Explanations
 
-I used two different forms, and users can see all group and create group options on the same page. New groups are created according to the given form in the backend. When users click the join button for other groups, they are redirected to groups/<group_name>/lock.
+#### / (Homepage)
 
-### /profile:
-* Profile Information
-* View options for all groups that the user has joined
+Displays the homepage, providing users with essential information and navigation options.
 
-Jinja2 and SQLite3 are used to display the information, and users are redirected to /groups/{{group['group_name']}} with Jinja2.
+#### /register, /login, /logout
 
+Handles user registration, login, and logout processes. User passwords are securely stored using hashing techniques, and authorization information is stored in the SQLite3 database.
 
-### /groups/<group_name>:
-* View all group posts
-* Share posts to these gorup
+#### /feed
 
-Validate if the logged-in user is already in the group_members table. If the person is not eligible, redirect to groups/<group_name>.
+- Users can share posts within the groups they are part of.
+- The feed displays all posts from the groups a user has joined.
 
-### /groups/<group_name>/lock:
-* Join groups from here by entering the password.
-* Protection system to ensure that people who don't know the group password can't access content
+The implementation utilizes SQLite3 and Jinja2 templates. The SQL library function of cs50 is employed for database interactions.
 
-When users join the group, if any user tries to access groups they haven't joined, they will automatically be redirected to this page.
+#### /groups
 
+- Create Groups
+- Join Groups
 
+Two different forms are used, presenting users with options to view existing groups and create new ones on the same page. The backend processes form submissions to create new groups. Users can join other groups by clicking the "join" button, redirecting them to groups/<group_name>/lock.
 
+#### /profile
+
+- Display Profile Information
+- View options for all groups joined by the user
+
+Jinja2 and SQLite3 are employed to retrieve and display user information. Users are redirected to /groups/{{group['group_name']}} using Jinja2.
+
+#### /groups/<group_name>
+
+- View all group posts
+- Share posts within the group
+
+The system validates if the logged-in user is a member of the group before allowing access. Unauthorized users are redirected to groups/<group_name>.
+
+#### /groups/<group_name>/lock
+
+- Join groups by entering the password
+- Protection system prevents unauthorized access to group content
+
+When users attempt to join a group, they are redirected to this page to enter the group password. Unauthorized users attempting to access groups they haven't joined are automatically redirected here.
